@@ -1,0 +1,18 @@
+# 1) Usamos la imagen oficial de PHP con Apache
+FROM php:7.4-apache
+
+# 2) Instalamos extensiones de PHP necesarias para MySQL
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# 3) Copiamos el contenido de la carpeta "app" al directorio de Apache
+COPY . /var/www/html/
+
+
+# 4) Habilitamos el módulo rewrite de Apache (por si usas .htaccess)
+RUN a2enmod rewrite
+
+# 5) Cambiamos los permisos de la carpeta de la aplicación (opcional)
+RUN chown -R www-data:www-data /var/www/html
+
+# 6) Exponemos el puerto 80 para acceder a la aplicación
+EXPOSE 80

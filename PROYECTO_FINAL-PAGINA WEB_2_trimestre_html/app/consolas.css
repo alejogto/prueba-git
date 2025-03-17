@@ -1,0 +1,442 @@
+/* Reset de márgenes y paddings para unificar el estilo en todos los navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+header {
+    position: relative; /* Necesario para el posicionamiento del pseudo-elemento */
+    background-image: url(imagenes/Screenshot_112.png);
+    background-size: cover;
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    color: #f1eaea; /* Define el color del texto en el encabezado */
+    padding: 1em 0; /* Define el relleno interior del encabezado */
+    text-align: center; /* Alinea el texto en el encabezado al centro */
+    font-weight: bold; /* Poner el texto en negrilla */
+}
+
+header::before { /*::before se utiliza aquí para crear una capa semitransparente sobre la imagen de fondo del header. Esta capa oscurece la imagen de fondo, haciendo que el texto del header sea más legible y se destaque más. Al colocar esta capa semitransparente por debajo del contenido del header (gracias al z-index), se logra el efecto deseado sin ocultar el texto o los otros elementos del header.*/
+    content: ""; /* Necesario para mostrar el pseudo-elemento */
+    position: absolute; /* Posiciona el pseudo-elemento de manera absoluta dentro del header */
+    top: 0; /* Posiciona el pseudo-elemento en la parte superior del header */
+    left: 0; /* Posiciona el pseudo-elemento en la parte izquierda del header */
+    width: 100%; /* Hace que el pseudo-elemento cubra todo el ancho del header */
+    height: 100%; /* Hace que el pseudo-elemento cubra toda la altura del header */
+    background: rgba(0, 0, 0, 0.5); /* Aplica un fondo negro semitransparente */
+    z-index: 1; /* Sitúa el pseudo-elemento por encima de la imagen de fondo pero por debajo del contenido del header */
+}
+
+header * { /*El selector header * selecciona todos los elementos que están dentro del header, sin importar el nivel de anidación. Es un selector universal para todos los descendientes del header.*/
+    position: relative; /* Asegura que los elementos dentro del header se posicionen correctamente */
+    z-index: 2; /* Sitúa el contenido del header por encima del pseudo-elemento */
+}
+header h1 {
+    margin: 0; /* Elimina los márgenes exteriores del título del encabezado */
+}
+
+nav ul {
+    list-style: none; /* Elimina los puntos de viñeta de la lista */
+    padding: 0; /* Elimina los márgenes interiores de la lista */
+}
+
+nav ul li {
+    display: inline; /* Muestra los elementos de lista en línea */
+    margin: 0 1em; /* Define los márgenes exteriores izquierdo y derecho de los elementos de lista */
+}
+
+nav ul li a {
+    color: #fffdf6; /* Define el color del texto en los enlaces de la lista */
+    text-decoration: none; /* Elimina el subrayado de los enlaces de la lista */
+    font-weight: bold;
+}
+
+/* Estilos de la sección principal */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Estilo para la sección de bienvenida */
+#home {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#home img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+/* Estilo para el contenedor de la cuadrícula de productos */
+.product-grid {
+    display: grid; /* Usa el layout de cuadrícula (grid) */
+    gap: 20px; /* Espacio entre las tarjetas */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Al menos 3 tarjetas por fila */
+    justify-items: center; /* Centra los elementos en la cuadrícula */
+    padding: 20px; /* Espacio alrededor de la cuadrícula */
+}
+
+/* Estilo para la tarjeta de producto */
+.product-card {
+    position: relative; /* Necesario para el posicionamiento de elementos internos */
+    overflow: hidden; /* Asegura que los elementos no se desborden del contenedor */
+    width: 100%; /* Asegura que la tarjeta ocupe el ancho total de su contenedor */
+    max-width: 300px; /* Limita el ancho máximo de la tarjeta */
+    text-align: center; /* Centra el contenido de la tarjeta */
+    display: flex; /* Usa flexbox para alinear elementos internamente */
+    flex-direction: column; /* Ordena los elementos en una columna */
+    justify-content: space-between; /* Distribuye el espacio de manera uniforme, empujando el botón hacia abajo */
+    padding: 15px; /* Espacio interno para mejorar la apariencia */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Añade una ligera sombra para un efecto de tarjeta */
+    transition: transform 0.3s ease-in-out; /* Suaviza cualquier transformación aplicada a la tarjeta */
+}
+
+/* Estilo para la imagen del producto */
+.product-card img {
+    width: 100%; /* Ajusta la imagen para que ocupe todo el ancho del contenedor */
+    height: auto; /* Mantiene las proporciones de la imagen */
+    max-height: 150px; /* Limita la altura máxima de la imagen */
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsión */
+    transition: transform 0.3s ease-in-out; /* Suaviza el efecto de transformación */
+    margin-bottom: 10px; /* Espacio debajo de la imagen */
+}
+
+/* Efecto de sobresalto al pasar el cursor sobre la imagen */
+.product-card img:hover {
+    transform: scale(1.1); /* Aumenta el tamaño de la imagen en un 10% */
+}
+
+/* Estilo para el título del producto */
+.product-card h3 {
+    font-size: 1.2em; /* Tamaño de fuente adecuado para el título */
+    margin: 10px 0; /* Espacio arriba y abajo del título */
+}
+
+/* Estilo para el precio del producto */
+.product-card p {
+    font-size: 1em; /* Tamaño de fuente para el precio */
+    margin: 5px 0; /* Espacio arriba y abajo del precio */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo para el botón de compra */
+.product-card button {
+    padding: 10px 15px; /* Espacio interno para el botón */
+    background-color: #28a745; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+    transition: background-olor 0.3s ease; /* Suaviza el cambio de color de fondo */
+}
+
+/* Cambio de color de fondo al pasar el cursor sobre el botón */
+.product-card button:hover {
+    background-color: #218838; /* Oscurece el color de fondo al pasar el cursor */
+}
+
+
+
+/* Estilos para el contenedor del formulario de compra */
+.purchase-form-container {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Fija el contenedor en la ventana del navegador */
+    top: 0; /* Alinea en la parte superior de la pantalla */
+    left: 0; /* Alinea en la parte izquierda de la pantalla */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    height: 100%; /* Ocupa todo el alto de la pantalla */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    z-index: 1000; /* Asegura que el formulario esté por encima de otros elementos */
+}
+
+/* Estilos para el formulario de compra */
+.purchase-form {
+    background: #fff; /* Fondo blanco */
+    padding: 20px; /* Espacio interno */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 300px; /* Ancho fijo */
+    max-width: 100%; /* Asegura que no se desborde */
+    position: relative; /* Necesario para el posicionamiento de elementos internos */
+    z-index: 1000; /* Asegura que el formulario esté por encima de otros elementos */
+    transition: transform 0.3s ease-in-out; /* Suaviza cualquier transformación aplicada a la tarjeta */
+}
+
+/* Estilos para los elementos dentro del formulario */
+.purchase-form label {
+    display: block; /* Cada etiqueta en una nueva línea */
+    margin-top: 10px; /* Espacio superior */
+    font-size: 1em; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    font-weight: bold; /* Fuente negra */
+    text-align: left; /* Alinea el texto hacia la izquierda */
+}
+
+/* Aplicar estilos consistentes a todos los inputs, select y textarea dentro de .purchase-form */
+.purchase-form input[type="text"],
+.purchase-form input[type="email"],
+.purchase-form input[type="tel"],
+.purchase-form input[type="password"],
+.purchase-form input[type="number"],
+.purchase-form input[type="url"],
+.purchase-form input[type="date"],
+.purchase-form input[type="search"],
+.purchase-form select,
+.purchase-form textarea {
+    width: 100%; /* Ocupa todo el ancho del formulario */
+    padding: 10px; /* Espacio interno */
+    margin-top: 5px; /* Espacio superior */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 1em; /* Tamaño de fuente */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+    transition: border-color 0.3s ease; /* Suaviza el cambio de color de borde */
+}
+
+/* Cambia el borde al enfocarse */
+.purchase-form input[type="text"]:focus,
+.purchase-form input[type="email"]:focus,
+.purchase-form input[type="tel"]:focus,
+.purchase-form input[type="password"]:focus,
+.purchase-form input[type="number"]:focus,
+.purchase-form input[type="url"]:focus,
+.purchase-form input[type="date"]:focus,
+.purchase-form input[type="search"]:focus,
+.purchase-form select:focus,
+.purchase-form textarea:focus {
+    border-color: #218838; /* Cambia el color del borde al enfocarse */
+    outline: none; /* Remueve el borde adicional que algunos navegadores aplican */
+}
+
+/* Aplicar estilos específicos para los botones */
+.purchase-form button {
+    margin-top: 15px; /* Espacio superior */
+    padding: 10px 15px; /* Espacio interno */
+    background-color: #218838; /* Color de fondo verde */
+    color: #fff; /* Color del texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a una mano */
+    transition: background-color 0.3s ease; /* Suaviza el cambio de color de fondo */
+}
+
+/* Estilo específico para el botón de cierre */
+#close-form-button {
+    background-color: #c82333; /* Color de fondo rojo */
+}
+
+/* Cambia el color de fondo al pasar el mouse por encima */
+.purchase-form button:hover,
+.purchase-form button:focus {
+    background-color: #1e7e34; /* Color de fondo más oscuro */
+}
+
+#close-form-button:hover,
+#close-form-button:focus {
+    background-color: #a71d2a; /* Color de fondo más oscuro para el botón de cierre */
+}
+
+
+
+ /* es para los estilos de el boton de busqueda*/
+ input[type="text"] { /* es para los estilos de el boton de busqueda*/
+    background: color #926363;
+    color:rgb(28, 26, 26);
+    border-radius: 10px;
+    padding: 2px 5px; /* Espaciado interno */
+    margin-top: -120px;
+    width:200px;
+
+}
+
+/* Estilo general del pie de página */
+footer {
+    background-color: #333; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 20px; /* Espacio interno */
+    text-align: center; /* Centrar texto */
+    font-size: 0.9em; /* Tamaño de fuente */
+    margin-top: 20px; /* Espacio superior */
+}
+
+/* Contenedor de contenido del pie de página */
+.footer-contenido {
+    display: flex; /* Flexbox para organizar el contenido */
+    flex-direction: column; /* Columna para móviles */
+    align-items: center; /* Centrar los elementos */
+    margin-bottom: 10px; /* Espacio inferior */
+}
+
+/* Estilo para la sección de contacto */
+.footer-contacto p {
+    margin: 5px 0; /* Espacio entre líneas */
+}
+
+.footer-contacto a {
+    color: #ffa500; /* Color de enlaces */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.footer-contacto a:hover {
+    text-decoration: underline; /* Subrayar al pasar el cursor */
+}
+
+/* Estilo para las redes sociales */
+.footer-redes {
+    margin-top: 10px; /* Espacio superior */
+}
+
+.footer-redes a {
+    margin: 0 10px; /* Espacio horizontal entre iconos */
+    color: #fff; /* Color de los iconos */
+    font-size: 24px; /* Tamaño de los iconos */
+    transition: color 0.3s ease; /* Suaviza el cambio de color */
+}
+
+.footer-redes a:hover {
+    color: #ffa500; /* Cambio de color al pasar el cursor */
+}
+
+/* Derechos reservados */
+.footer-derechos {
+    margin-top: 10px; /* Espacio superior */
+    border-top: 1px solid #444; /* Línea separadora */
+    padding-top: 10px; /* Espacio interno superior */
+    font-size: 0.8em; /* Tamaño de fuente menor */
+    color: #bbb; /* Color del texto */
+}
+svg{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    fill: #010000;
+}
+
+/* Estilos para el botón de volver arriba */
+.boton-volver-arriba {
+    position: fixed; /* Fija el botón en la pantalla */
+    bottom: 20px; /* Espacio desde la parte inferior */
+    right: 20px; /* Espacio desde la parte derecha */
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 50%; /* Bordes redondeados */
+    width: 40px; /* Ancho del botón */
+    height: 40px; /* Altura del botón */
+    text-align: center; /* Centra el texto */
+    line-height: 40px; /* Centra verticalmente el texto */
+    text-decoration: none; /* Elimina la decoración del enlace */
+    font-size: 24px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    z-index: 1000; /* Asegura que el botón esté por encima de otros elementos */
+    opacity: 0.7; /* Transparencia del botón */
+}
+
+.boton-volver-arriba:hover {
+    opacity: 1; /* Aumenta la opacidad al pasar el cursor */
+}
+
+
+/* styles.css */
+.carousel {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    transition: opacity 0.5s ease;
+}
+
+.carousel-item img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 30px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+/* Manejo de la visibilidad */
+.carousel-item {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item.active {
+    opacity: 1;
+    position: relative;
+}
+
+h3{
+    color: rgb(8, 0, 0);
+    font-size: 20px;
+    text-align: center;
+}
+
+/*iconos del pie de pagina con los iconos delas consolas*/
+   /* Estilo del contenedor del pie de página */
+   .footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+/* Estilo de los íconos */
+.footer img {
+    width: 80px; /* Tamaño de los íconos */
+    margin: 0 15px; /* Espaciado entre los íconos */
+    transition: transform 0.3s; /* Transición suave al pasar el mouse */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar el mouse */
+}
+
+/* Efecto de ampliación al pasar el mouse sobre los íconos el hover o decir flotante es para el efecto de que la imagen tenga un flote o un sobre salto*/  
+.footer img:hover {
+    transform: scale(1.1); /* Ampliar un 10% */
+}
